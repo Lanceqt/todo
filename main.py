@@ -15,7 +15,7 @@ def db_insert(task, status, completed_by):
 
 #init logic & prompt for user entry
 
-init_menu = Prompt.ask("Welcome user please select your destination (A)dd task, (R)emove task, (V)iew Tasks", choices=["A", "R", "V", "T"])
+init_menu = Prompt.ask("Welcome user please select your destination (A)dd task, (R)emove task, (V)iew Tasks", choices=["A", "R", "V"])
 
 
 if (init_menu == "A"):
@@ -26,7 +26,6 @@ if (init_menu == "A"):
     db_insert(task_name, task_status, task_complete_by)
 
 if (init_menu == "R"):
-    #for 
     print("r")
     
 if (init_menu == "V"):
@@ -38,6 +37,6 @@ if (init_menu == "V"):
     console = Console()
 
     for item in db:
-        table.add_row("1", "Task", "Today", "Pending") #need to find the right command for pulling data out of tinyDB into these example strings
+        table.add_row( item["task"], item["completed_by"], item["status"]) #need to find the right command for pulling data out of tinyDB into these example strings
 
     console.print(table)
