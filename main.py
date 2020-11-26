@@ -10,8 +10,8 @@ db = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': ')) #for de
 #db = TinyDB('db.json') for "production"
 
 #function to insert into db
-def db_insert(task, status, completed_by):
-    db.insert({"task": task, "status": status, "completed_by": completed_by})
+def db_insert(id, task, status, completed_by):
+    db.insert({"id": id, "task": task, "status": status, "completed_by": completed_by})
 
 #init logic & prompt for user entry
 
@@ -37,6 +37,5 @@ if (init_menu == "V"):
     console = Console()
 
     for item in db:
-        table.add_row( item["task"], item["completed_by"], item["status"]) #need to find the right command for pulling data out of tinyDB into these example strings
-
+        table.add_row("ID goes here", item["task"], item["completed_by"], item["status"]) #need to find the right command for pulling data out of tinyDB into these example strings
     console.print(table)
