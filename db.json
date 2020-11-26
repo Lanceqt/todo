@@ -7,6 +7,17 @@
         "2": {
             "count": 3,
             "type": "peach"
+        },
+        "3": {
+            "completed_by": "test3",
+            "created": "test4",
+            "status": "test2",
+            "task": "test1"
+        },
+        "4": {
+            "completed_by": "30/11 2018",
+            "status": "pending",
+            "task": "test task"
         }
     }
 }
