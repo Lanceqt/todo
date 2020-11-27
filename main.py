@@ -38,5 +38,5 @@ if (init_menu == "V"):
     console = Console()
 
     for item in db:
-        table.add_row("ID goes here", item["task"], item["completed_by"], item["status"]) #need to find the right command for pulling data out of tinyDB into these example strings
+        table.add_row(str(item.doc_id), item["task"], item["completed_by"], item["status"]) #need to find the right command for pulling data out of tinyDB into these example strings
     console.print(table)
