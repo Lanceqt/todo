@@ -10,8 +10,9 @@ db = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': ')) #for de
 #db = TinyDB('db.json') for "production"
 
 #function to insert into db
-def db_insert(id, task, status, completed_by):
-    db.insert({"id": id, "task": task, "status": status, "completed_by": completed_by})
+def db_insert(task, status, completed_by):
+    task_id = 0 #this is where you stopped next up making task IDs
+    db.insert({"id": task_id, "task": task, "status": status, "completed_by": completed_by})
 
 #init logic & prompt for user entry
 
