@@ -4,6 +4,8 @@ from rich.traceback import install
 from rich.prompt import Prompt
 from tinydb import TinyDB, Query
 from datetime import date
+
+from typing_extensions import runtime
 install() #better error handling. from rich.traceback
 
 #Database
@@ -35,23 +37,25 @@ def list_todo():
 
 #this is where the program starts
 print("Welcome user")
-init_menu: str = menu("A", "R", "V")
-
-#adds to db.json
-if (init_menu == "A"):
-    task_name: str = input("Great, please name the task you would like to add!: ")
-    task_status: str = "Pending"
-    task_complete_by: str = input("When should this task be done by? (example: 30th of december 2020): ")
-    try:
-        db_insert(task_name, task_status, task_complete_by)
-        print("Success! Task has been added.")
-    except:
-        print("Your task was not added to do an unforeseen error")
-
-#removes from db.json
-if (init_menu == "R"):
+run_program: bool = True
+while (run_program == True):
     init_menu: str = menu("A", "R", "V")
 
-#View db.json   
-if (init_menu == "V"):
-    list_todo()
+    #adds to db.json
+    if (init_menu == "A"):
+        task_name: str = input("Great, please name the task you would like to add!: ")
+        task_status: str = "Pending"
+        task_complete_by: str = input("When should this task be done by? (example: 30th of december 2020): ")
+        try:
+            db_insert(task_name, task_status, task_complete_by)
+            print("Success! Task has been added.")
+        except:
+            print("Your task was not added to do an unforeseen error")
+
+    #removes from db.json
+    if (init_menu == "R"):
+        init_menu: str = menu("A", "R", "V")
+
+    #View db.json   
+    if (init_menu == "V"):
+        list_todo()
