@@ -5,6 +5,24 @@
             "status": "Pending",
             "task": "Shopping"
         },
+        "10": {
+            "completed_by": "Today",
+            "created": "creation date here",
+            "status": "Pending",
+            "task": "H\u00e6ng ud med jake"
+        },
+        "11": {
+            "completed_by": "Today",
+            "created": "2020-11-28",
+            "status": "Pending",
+            "task": "date creation test"
+        },
+        "12": {
+            "completed_by": "now",
+            "created": "2020-11-28",
+            "status": "Pending",
+            "task": "test 2"
+        },
         "2": {
             "completed_by": "today",
             "status": "Pending",
