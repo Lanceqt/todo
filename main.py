@@ -4,18 +4,16 @@ from rich.traceback import install
 from rich.prompt import Prompt
 from tinydb import TinyDB, Query
 from datetime import date
-
-from typing_extensions import runtime
 install() #better error handling. from rich.traceback
 
 #Database
-db = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': ')) #for dev
+DB = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': ')) #for dev
 #db = TinyDB('db.json') for "production"
 
 #function to insert into db
 def db_insert(task: str, status: str, completed_by: str):
     created_when: str = str(date.today()) #Must be stringified or tinyDB throws a fit.
-    db.insert({"task": task, "status": status, "completed_by": completed_by, "created": created_when})
+    DB.insert({"task": task, "status": status, "completed_by": completed_by, "created": created_when})
 
 #reuseable initmenu the type setting is probably not necessary could be like list_todo()
 def menu(a: str, r: str, v: str) -> str:
@@ -31,7 +29,7 @@ def list_todo():
     table.add_column("Status", style="green", justify="right")
     console = Console()
     
-    for item in sorted(db, key = lambda i: int(i.doc_id)): #Lambda is like an inline function see below it's the same putting this here for my own reference and learning.
+    for item in sorted(DB, key = lambda i: int(i.doc_id)): #Lambda is like an inline function see below it's the same putting this here for my own reference and learning.
     #def foo(i):
     #   return int(i.doc_id)
     #   for item in sorted(db, key = foo):
@@ -44,26 +42,29 @@ def exit_program() -> bool:
     return False
 
 #this is where the program starts
-print("Welcome user")
-run_program: bool = True
-while (run_program == True):
-    init_menu: str = menu("A", "R", "V")
-
-    #adds to db.json
-    if (init_menu == "A"):
-        task_name: str = input("Great, please name the task you would like to add!: ")
-        task_status: str = "Pending"
-        task_complete_by: str = input("When should this task be done by? (example: 30th of december 2020): ")
-        try:
-            db_insert(task_name, task_status, task_complete_by)
-            print("Success! Task has been added.")
-        except:
-            print("Your task was not added to do an unforeseen error")
-
-    #removes from db.json
-    if (init_menu == "R"):
+def main():
+    print("Welcome user")
+    run_program: bool = True
+    while (run_program == True):
         init_menu: str = menu("A", "R", "V")
 
-    #View db.json   
-    if (init_menu == "V"):
-        list_todo()
+        #adds to db.json
+        if (init_menu == "A"):
+            task_name: str = input("Great, please name the task you would like to add!: ")
+            task_status: str = "Pending"
+            task_complete_by: str = input("When should this task be done by? (example: 30th of december 2020): ")
+            try:
+                db_insert(task_name, task_status, task_complete_by)
+                print("Success! Task has been added.")
+            except:
+                print("Your task was not added to do an unforeseen error")
+
+        #removes from db.json
+        if (init_menu == "R"):
+            init_menu: str = menu("A", "R", "V")
+
+        #View db.json   
+        if (init_menu == "V"):
+            list_todo()
+
+main()
