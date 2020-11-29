@@ -39,6 +39,7 @@ def list_todo():
 
 #this is the main program
 def main(user_message: str):
+    #this is how we exit the loop call exit_program("message", "affirmative", "negative") after task with
     def exit_program(m: str, y: str, n: str) -> bool:
         exit_prompt: str = Prompt.ask(f"{m}", choices=[y, n])
         if (exit_prompt == y):
@@ -65,11 +66,11 @@ def main(user_message: str):
 
         #removes from db.json
         if (init_menu == "R"):
-            run_program = exit_program("Success! Task have ben removed. Exit?", "Yes", "No")
+            run_program: bool = exit_program("Success! Task have ben removed. Exit?", "Yes", "No")
         #View db.json   
         if (init_menu == "V"):
             list_todo()
-            run_program = exit_program("Wanna exit the program?", "Yes", "No")
+            run_program: bool = exit_program("Wanna exit the program?", "Yes", "No")
 
 #running program
 if __name__ == '__main__': 
