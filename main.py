@@ -30,10 +30,15 @@ def list_todo():
     table.add_column("Do date", style="green")
     table.add_column("Status", style="green", justify="right")
     console = Console()
-
-    for item in db:
+    
+    for item in sorted(db, key = lambda i: int(i.doc_id)):
         table.add_row(str(item.doc_id), item["task"], item["completed_by"], item["status"])
+        
     console.print(table)
+
+def exit_program() -> bool:
+    
+    return False
 
 #this is where the program starts
 print("Welcome user")
