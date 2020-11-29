@@ -42,8 +42,8 @@ def exit_program() -> bool:
     return False
 
 #this is where the program starts
-def main():
-    print("Welcome user")
+def main(user_message: str):
+    print(user_message)
     run_program: bool = True
     while (run_program == True):
         init_menu: str = menu("A", "R", "V")
@@ -66,5 +66,8 @@ def main():
         #View db.json   
         if (init_menu == "V"):
             list_todo()
-
-main()
+#running program
+if __name__ == '__main__': 
+    main("Welcome user")
+else:
+    print("this file is not suppose to be imported anywhere you done goofed")
