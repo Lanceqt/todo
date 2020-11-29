@@ -39,14 +39,12 @@ def list_todo():
 
 #this is the main program
 def main(user_message: str):
-    def exit_program(y: str, n: str) -> bool:
-        exit_prompt: str = Prompt.ask(f"Do you wish to exit the program?", choices=[y, n])
+    def exit_program(m: str, y: str, n: str) -> bool:
+        exit_prompt: str = Prompt.ask(f"{m}", choices=[y, n])
         if (exit_prompt == y):
-            run_program = False
-            return run_program
+            return False
         else:
-            run_program = True
-            return run_program
+            return True
 
     print(user_message)
     run_program: bool = True
@@ -61,18 +59,17 @@ def main(user_message: str):
             task_complete_by: str = input("When should this task be done by? (example: 30th of december 2020): ")
             try:
                 db_insert(task_name, task_status, task_complete_by)
-                print("Success! Task has been added.")
+                run_program = exit_program("Success! Task has been added. Exit?", "Yes", "No")
             except:
                 print("Your task was not added to do an unforeseen error")
 
         #removes from db.json
         if (init_menu == "R"):
-            init_menu: str = menu("A", "R", "V")
-
+            run_program = exit_program("Success! Task have ben removed. Exit?", "Yes", "No")
         #View db.json   
         if (init_menu == "V"):
             list_todo()
-            exit_program("Yes", "No")
+            run_program = exit_program("Wanna exit the program?", "Yes", "No")
 
 #running program
 if __name__ == '__main__': 
