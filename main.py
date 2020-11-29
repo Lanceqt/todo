@@ -50,7 +50,7 @@ def main(user_message: str):
     print(user_message)
     run_program: bool = True
 
-    while (run_program == True):
+    while (run_program is True):
         init_menu: str = menu("A", "R", "V")
 
         #adds to db.json
@@ -61,16 +61,16 @@ def main(user_message: str):
             try:
                 db_insert(task_name, task_status, task_complete_by)
                 run_program = exit_program("Success! Task has been added. Exit?", "Yes", "No")
-            except:
-                print("Your task was not added to do an unforeseen error")
+            except Exception as e:
+                print(f"Your task was not added to do an unforeseen error:{e}")
 
         #removes from db.json
         if (init_menu == "R"):
-            run_program: bool = exit_program("Success! Task have ben removed. Exit?", "Yes", "No")
+            run_program = exit_program("Success! Task have been removed. Exit?", "Yes", "No")
         #View db.json   
         if (init_menu == "V"):
             list_todo()
-            run_program: bool = exit_program("Wanna exit the program?", "Yes", "No")
+            run_program = exit_program("Wanna exit the program?", "Yes", "No")
 
 #running program
 if __name__ == '__main__': 
