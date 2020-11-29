@@ -37,14 +37,20 @@ def list_todo():
 
     console.print(table)
 
-def exit_program() -> bool:
-    
-    return False
-
-#this is where the program starts
+#this is the main program
 def main(user_message: str):
+    def exit_program(y: str, n: str) -> bool:
+        exit_prompt: str = Prompt.ask(f"Do you wish to exit the program?", choices=[y, n])
+        if (exit_prompt == y):
+            run_program = False
+            return run_program
+        else:
+            run_program = True
+            return run_program
+
     print(user_message)
     run_program: bool = True
+
     while (run_program == True):
         init_menu: str = menu("A", "R", "V")
 
@@ -66,6 +72,8 @@ def main(user_message: str):
         #View db.json   
         if (init_menu == "V"):
             list_todo()
+            exit_program("Yes", "No")
+
 #running program
 if __name__ == '__main__': 
     main("Welcome user")
