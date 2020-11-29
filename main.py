@@ -31,9 +31,12 @@ def list_todo():
     table.add_column("Status", style="green", justify="right")
     console = Console()
     
-    for item in sorted(db, key = lambda i: int(i.doc_id)):
+    for item in sorted(db, key = lambda i: int(i.doc_id)): #Lambda is like an inline function see below it's the same putting this here for my own reference and learning.
+    #def foo(i):
+    #   return int(i.doc_id)
+    #   for item in sorted(db, key = foo):
         table.add_row(str(item.doc_id), item["task"], item["completed_by"], item["status"])
-        
+
     console.print(table)
 
 def exit_program() -> bool:
