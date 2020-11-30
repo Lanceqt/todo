@@ -37,6 +37,10 @@ def list_todo():
 
     console.print(table)
 
+#removing entry
+def remove_task():
+    return False
+
 #this is the main program
 def main(user_message: str):
     #this is how we exit the loop call exit_program("message", "affirmative", "negative") after task with
