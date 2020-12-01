@@ -41,30 +41,6 @@
             "status": "Pending",
             "task": "add test 15"
         },
-        "16": {
-            "completed_by": "func test2020",
-            "created": "2020-11-29",
-            "status": "Pending",
-            "task": "func test"
-        },
-        "17": {
-            "completed_by": "test2020",
-            "created": "2020-11-29",
-            "status": "Pending",
-            "task": "test"
-        },
-        "18": {
-            "completed_by": "greu",
-            "created": "2020-11-29",
-            "status": "Pending",
-            "task": "ejfwui"
-        },
-        "19": {
-            "completed_by": "efwfw",
-            "created": "2020-11-29",
-            "status": "Pending",
-            "task": "frwef"
-        },
         "2": {
             "completed_by": "today",
             "status": "Pending",

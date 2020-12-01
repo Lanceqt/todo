@@ -29,7 +29,8 @@ def list_todo():
     table.add_column("Status", style="green", justify="right")
     console = Console()
     
-    for item in sorted(DB, key = lambda i: int(i.doc_id)): #Lambda is like an inline function see below it's the same putting this here for my own reference and learning.
+    for item in sorted(DB, key = lambda i: int(i.doc_id)):
+    #Lambda is like an inline function see below it's the same putting this here for my own reference and learning.
     #def foo(i):
     #   return int(i.doc_id)
     #   for item in sorted(db, key = foo):
@@ -37,9 +38,14 @@ def list_todo():
 
     console.print(table)
 
-#removing entry
-def remove_task():
-    return False
+#removing entry this should probably be sanitized somehow but I am not sure.
+def db_remove(prompt: str):
+        usr_prompt = input(prompt)
+        id = int(usr_prompt)
+        try:
+            DB.remove(doc_ids=[id])
+        except Exception as e:
+            print(f"Your task was not added to do an unforeseen error:{e}")
 
 #this is the main program
 def main(user_message: str):
@@ -70,6 +76,8 @@ def main(user_message: str):
 
         #removes from db.json
         if (init_menu == "R"):
+            list_todo()
+            db_remove("please type in the ID of the task you want to delete: ")
             run_program = exit_program("Success! Task have been removed. Exit?", "Yes", "No")
         #View db.json   
         if (init_menu == "V"):
