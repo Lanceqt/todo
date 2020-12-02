@@ -8,7 +8,7 @@ install() # better error handling. from rich.traceback
 
 # Database
 DB = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': ')) #for dev
-#db = TinyDB('db.json') for "production"py
+#DB = TinyDB('db.json') for "production"py
 
 #function to insert into db
 def db_insert(task: str, status: str, completed_by: str):
@@ -25,7 +25,7 @@ def db_insert(task: str, status: str, completed_by: str):
 # is probably not necessary could be like list_todo()
 def menu(a: str, r: str, v: str) -> str:
     prompt: str = Prompt.ask(
-        f"please select your destination {a} to Add task,{r} to Remove task, \
+        f"please select your destination {a} to Add task, {r} to Remove task, \
         {v} to View Tasks", choices=[a, r, v]
     )
     return prompt
@@ -89,7 +89,8 @@ def main(user_message: str):
             )
             task_status: str = "Pending"
             task_complete_by: str = input(
-                "When should this task be done by? (example: 30th of december 2020): "
+                "When should this task be done by? (example: \
+                30th of december 2020): "
             )
             try:
                 db_insert(task_name, task_status, task_complete_by)
