@@ -7,12 +7,14 @@ from datetime import date
 install() # better error handling. from rich.traceback
 
 # Database
-DB = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': ')) #for dev
-#DB = TinyDB('db.json') for "production"py
+# for dev
+DB = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': '))
+# for "production"py 
+#DB = TinyDB('db.json') 
 
-#function to insert into db
+# function to insert into db
 def db_insert(task: str, status: str, completed_by: str):
-    #Must be stringified or tinyDB throws a fit.
+    # Must be stringified or tinyDB throws a fit.
     created_when: str = str(date.today())
     DB.insert({
         "task": task,
@@ -30,7 +32,7 @@ def menu(a: str, r: str, v: str) -> str:
     )
     return prompt
 
-#reuseable listing todo
+# reuseable listing todo
 def list_todo():
     table = Table(title="Todo list", style="blue")
     table.add_column("Item ID", style="red", justify="right")
@@ -64,6 +66,7 @@ def db_remove(prompt: str):
             print(f"Your task was not added to do an unforeseen error:{e}")
 
 def db_update():
+
     return False
 # this is the main program
 def main(user_message: str):
@@ -82,7 +85,7 @@ def main(user_message: str):
     while (run_program is True):
         init_menu: str = menu("A", "R", "V")
 
-        #adds to db.json
+        # adds to db.json
         if (init_menu == "A"):
             task_name: str = input(
                 "Great, please name the task you would like to add!: "
