@@ -32,13 +32,13 @@
         "14": {
             "completed_by": "today testing",
             "created": "2020-11-28",
-            "status": "Pending",
+            "status": "Done",
             "task": "test task"
         },
         "15": {
             "completed_by": "today is 15",
             "created": "2020-11-29",
-            "status": "Pending",
+            "status": "Done",
             "task": "add test 15"
         },
         "2": {

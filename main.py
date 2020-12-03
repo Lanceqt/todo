@@ -25,10 +25,14 @@ def db_insert(task: str, status: str, completed_by: str):
 
 # reuseable initmenu the type setting
 # is probably not necessary could be like list_todo()
-def menu(a: str, r: str, v: str) -> str:
+def menu(a: str, r: str, v: str, u: str) -> str:
     prompt: str = Prompt.ask(
-        f"please select your destination {a} to Add task, {r} to Remove task, \
-        {v} to View Tasks", choices=[a, r, v]
+        f"""please select your destination.
+        {a} to Add task
+        {r} to Remove task
+        {v} to View Tasks
+        {u} to update task status \n""", 
+        choices=[a, r, v, u]
     )
     return prompt
 
@@ -65,9 +69,15 @@ def db_remove(prompt: str):
         except Exception as e:
             print(f"Your task was not added to do an unforeseen error:{e}")
 
-def db_update():
+# change status to completed
+def db_update(prompt: str):
+    usr_prompt = input(prompt)
+    id = int(usr_prompt)
+    try:
+        DB.update({"status": "Done"}, doc_ids=[id])
+    except Exception as e:
+        print(f"Your task was not updated to do an unforeseen error:{e}")
 
-    return False
 # this is the main program
 def main(user_message: str):
     # this is how we exit the loop call
@@ -83,7 +93,7 @@ def main(user_message: str):
     run_program: bool = True
 
     while (run_program is True):
-        init_menu: str = menu("A", "R", "V")
+        init_menu: str = menu("A", "R", "V", "U")
 
         # adds to db.json
         if (init_menu == "A"):
@@ -103,18 +113,26 @@ def main(user_message: str):
             except Exception as e:
                 print(f"Your task was not added to do an unforeseen error:{e}")
 
-        #removes from db.json
+        # removes from db.json
         if (init_menu == "R"):
             list_todo()
             db_remove("please type in the ID of the task you want to delete: ")
             run_program = exit_program(
                 "Success! Task have been removed. Exit?","Yes", "No"
             )
-        #View db.json   
+        #V iew db.json   
         if (init_menu == "V"):
             list_todo()
             run_program = exit_program("Wanna exit the program?", "Yes", "No")
-
+        # update status
+        if (init_menu == "U"):
+            list_todo()
+            db_update("""
+            Please enter the ID of the task you would like to mark as completed
+            """)
+            run_program = exit_program(
+                "Success! Task have been updated. Exit?","Yes", "No"
+            )
 #running program
 if __name__ == '__main__': 
     main("Welcome user")
